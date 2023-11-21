@@ -103,15 +103,15 @@ public:
         vector<int> allocation(procesSize.size(), -1);
         int j=0;
         int cnt=0;
+        // NOTE -- we never reset j... as we use it to check the next one 
         for(int i=0;i<procesSize.size();i++)
         {
-            while(cnt<=blockSize.size())
+            while(cnt<=blockSize.size())//"cnt" is a counter variable used to keep track of the number of blocks checked in the current iteration.
             {
                 if (blockSize[j] >= procesSize[i])
                 {
-                    allocation[i] = j;
+                    allocation[i] = j;// j is an index variable that represents the last allocated block.
                     blockSize[j] -= procesSize[i];
-
 
                     cnt=0;
                     break;
@@ -119,7 +119,7 @@ public:
                 else
                 {
                     j++;
-                    j=j%blockSize.size();
+                    j=j%blockSize.size();//vimp
                     cnt++;
                 }
             }
