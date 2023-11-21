@@ -16,7 +16,6 @@ class Table{
             this->data = data;
             this->address = address;
         }
-
 };
 
 vector<string> intermediateCode;
@@ -41,7 +40,6 @@ class pass1{
 
     //spliting a sentence of words into word and storing in vector of words
     static vector<string> split(string line){
-
         vector<string> result;
 
         string word = "";
@@ -54,15 +52,10 @@ class pass1{
             }else{
                 word += i;
             } 
-
-            
         }
-
         result.push_back(word);
-
         return result;
     }
-
     //creating MOT
     static void prepareDp(){
 
@@ -104,7 +97,6 @@ class pass1{
 
         string start = "{C,";
         string end = "}";
-
         return start + constant + end;
     }
 
@@ -120,19 +112,12 @@ class pass1{
         symbolTable.push_back(row);
         return "{S, " + to_string(idx) + "}";
     }
-
-
-
     // checking whether given string data[0] is constant or not 
     static bool isConstant(string data){
-
         return data[0] >= '0' && data[0] <= '9';
-
     }
- 
     // checking whether given string word[0] is word or not 
     static bool isSymbol(string word){
-
         return ((word[0] >= 'a' && word[0] <= 'z') || (word[0] >= 'A' && word[0] <= 'Z'));
     }
 
@@ -166,7 +151,6 @@ class pass1{
     static void handleLtorg(){
 
         int temp = counter;
-
         for (Table *row : literalTable){
             if(row->address == -1){
                 row -> address = temp;
@@ -180,11 +164,9 @@ class pass1{
 
         fstream fout;
         fout.open("intermediate_code.txt", ios::out);
-
         for(string row: intermediateCode){
             fout << row << endl;
         }
-
         fout.close();
     }
    
@@ -203,7 +185,6 @@ class pass1{
     // storing in symbol table code txt
     static void saveSymbolTable()
     {
-
         fstream fout;
         fout.open("symbol_table.txt", ios::out);
 
@@ -218,16 +199,13 @@ void handleLine(vector<string> line)
 {
 
     pass1::printLine(line);
-   
     string currInter;
-
     if (line[0] == "START")//start 
     {
         // set counter
         counter = stoi(line[1]);
 
         cout << "counter value set to " << counter << endl;
-
         // add to intermidiate code
         currInter += dp[line[0]];
         currInter += " {C," + line[1] + "}";
@@ -237,17 +215,13 @@ void handleLine(vector<string> line)
     }//done
 
     counter += 1;
-
     if(line[0] == "LTORG"){
-
         pass1::handleLtorg();
-
     }
 
     // if vector is of size 2 then there must be an IS or AD and symbol
     if (line.size() == 2)
     {
-
         currInter += dp[line[0]];
         currInter += pass1::addSymbol(line[1]);
         intermediateCode.push_back(currInter);
@@ -265,20 +239,17 @@ void handleLine(vector<string> line)
     {
 
         string word = line[i];
-
         // if word is memo
         if (dp.find(word) != dp.end())
         {
             currInter += dp[word];
             currInter += " ";
         }
-
         else if (pass1::isConstant(word))
         {
             currInter += pass1::getConstantString(word);
             currInter += " ";
         }
-
         else if (pass1::isSymbol(word))
         {
 
@@ -291,7 +262,6 @@ void handleLine(vector<string> line)
                 currInter += pass1::addSymbol(word);
                 currInter += " ";
             }
-            
         }
         else
         {
@@ -299,10 +269,7 @@ void handleLine(vector<string> line)
             currInter += " ";
         } 
     }
-    
     intermediateCode.push_back(currInter);
-
-    
 }
 
 int main(){
