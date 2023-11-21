@@ -1,0 +1,10 @@
+ONE &O &N &E 
+MOVER #3 #1 
+ADD #3 #2 
+MOVEM #3 #1 
+MEND
+TWO &T &W &O 
+MOVER #3 #1 
+ADD #3 #2 
+MOVEM #3 #1 
+MEND
