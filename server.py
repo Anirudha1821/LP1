@@ -1,6 +1,7 @@
 from xmlrpc.server import SimpleXMLRPCServer
 
 def factorial(n):
+    
     fact = 1
     if(n<0):
         return -1
@@ -8,13 +9,10 @@ def factorial(n):
         fact = fact * i
     return fact
 
-
 def square(n):
-    print("square request arrived ")
 
     sq = n*n
     return sq
-
 
 port = 8000
 server = SimpleXMLRPCServer(("localhost", port), logRequests=False)## imp
