@@ -54,7 +54,7 @@ class Schedular
 {
 private:
     int n;
-    Job *processes;
+    Job *processes;//processes is a pointer to an array of objects of the Job
     vector<Job> readyQueue;
 
 public:

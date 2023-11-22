@@ -25,14 +25,12 @@ class pass2{
                     word += i;
                 }
             }
-
             result.push_back(word);
             return result;
         }
 
     static vector<string> split(string line)
     {
-
         vector<string> result;
         string word = "";
         for (char i : line)
@@ -64,7 +62,6 @@ class pass2{
     }
 
     static void saveSymbolTable(){
-
         fstream fin;
         fin.open("symbol_table.txt", ios::in);
 

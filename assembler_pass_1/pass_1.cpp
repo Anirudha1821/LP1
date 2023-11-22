@@ -163,7 +163,7 @@ class pass1{
     static void saveIntermediateCode(){
 
         fstream fout;
-        fout.open("intermediate_code.txt", ios::out);
+        fout.open("intermediate_code1.txt", ios::out);
         for(string row: intermediateCode){
             fout << row << endl;
         }
@@ -275,7 +275,7 @@ void handleLine(vector<string> line)
 int main(){
 
     ifstream inputFile;
-    inputFile.open("input.txt", ios::in);
+    inputFile.open("inputt.txt", ios::in);
 
     pass1::prepareDp();
 
